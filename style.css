@@ -93,3 +93,51 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 400%;
 }
+
+/* Add this to the end of your current CSS file */
+
+/* CV page specific styles */
+.cv section {
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cv article {
+  margin-bottom: 1.5rem;
+}
+
+
+.cv article header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.cv time {
+  color: #666;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.cv ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+/* Media query for small screens */
+/* @media (max-width: 768px) {
+  .cv ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .cv article header {
+    flex-direction: column;
+  }
+} */

@@ -2,16 +2,15 @@ console.log('ITS ALIVE!');
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
-// PART 3
+// PART 3 ****
 // 3.1
 console.log('What?');
 let pages = [
- { url: '', title: 'Home' },
- { url: 'projects/', title: 'Projects' },
- { url: 'cv/', title: 'About' },
- { url: 'contact/', title: 'Contact' },
- { url: 'idk/', title: 'funfunfun'}
-];
+  { url: './', title: 'Home' },
+  { url: './projects/', title: 'Projects' },
+  { url: './cv/', title: 'About' },
+  { url: './contact/', title: 'Contact' },
+ ];
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/" // Local server
   : "/portfolio_lab_01/"; // GitHub Pages repo name

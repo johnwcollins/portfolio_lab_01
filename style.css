@@ -130,10 +130,17 @@ h1 {
 /* CV page specific styles */
 .cv section {
   margin-bottom: 2rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.85); /* Light card on light bg */
   padding: 1.5rem;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode override */
+@media (prefers-color-scheme: dark) {
+  .cv section {
+    background-color: rgba(255, 255, 255, 0.05); /* Light card on dark bg */
+  }
 }
 
 .cv article {

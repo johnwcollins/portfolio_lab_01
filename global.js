@@ -2,15 +2,81 @@ console.log('ITS ALIVE!');
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
-// PART 3 ****
+
+export async function fetchGitHubData(username) {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    if (!response.ok) {
+      throw new Error(`GitHub user not found: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching GitHub data:', error);
+  }
+}
+
+export async function fetchJSON(url) {
+  try {
+    // 1. Fetch the JSON file from the given URL
+    const response = await fetch(url);
+
+    // 2. Check if the response is okay, otherwise throw an error
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // 3. Parse the JSON data
+    const data = await response.json();
+
+    // 4. Return the parsed data
+    return data;
+
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!containerElement) {
+    console.error('Container element not found.');
+    return;
+  }
+
+  // 1. Clear the container
+  containerElement.innerHTML = '';
+
+  // 2. Loop through each project
+  for (const project of projects) {
+    // Create the article element
+    const article = document.createElement('article');
+
+    // Set its innerHTML
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+    `;
+
+    // Append to the container
+    containerElement.appendChild(article);
+  }
+}
+
+
+
+// PART 3
 // 3.1
 console.log('What?');
 let pages = [
-  { url: './', title: 'Home' },
-  { url: './projects/', title: 'Projects' },
-  { url: './cv/', title: 'About' },
-  { url: './contact/', title: 'Contact' },
- ];
+  { url: '',                           title: 'Home'     },
+  { url: 'projects/',                  title: 'Projects' },
+  { url: 'cv/',                        title: 'About'    },
+  { url: 'contact/',                   title: 'Contact'  },
+  { url: 'https://github.com/johnwcollins', title: 'GitHub' },  // ← new
+  { url: 'idk/',                       title: 'FunFunFun'}
+];
+
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/" // Local server
   : "/portfolio_lab_01/"; // GitHub Pages repo name
@@ -119,3 +185,11 @@ select.addEventListener('input', function (event) {
   
 //   // OR Option 2 (just one of these!)
 //   //currentLink?.classList.add('current');
+
+
+
+if (location.pathname.includes('projects')) {
+  fetchJSON('../lib/projects.json').then(data => {
+    console.log(data); // Later you'll call renderProjects(data) here
+  });
+}

@@ -20,17 +20,30 @@
   </nav>
   -->
 
+
+
   <h1>Projects</h1>
+
+  <!-- Search input -->
+  <input
+    class="searchBar"
+    type="search"
+    aria-label="Search projects"
+    placeholder="🔍 Search projects…"
+  />
+  
+
+  
+  <!-- SVG chart -->
+  <svg id="projects-plot" viewBox="-50 -50 100 100">
+    <!-- Paths will be added by D3 -->
+  </svg>
+  <ul class="legend"></ul>
 
   <!-- Dynamic project cards will go here -->
   <div class="projects"></div>
-
-  <!-- ✅ STEP 1.1: SVG element for future pie chart -->
-  <svg id="projects-plot" viewBox="-50 -50 100 100">
-  </svg>
-  <!-- ✅ END OF STEP 1.1 -->
-
-  <!-- ✅ JavaScript modules -->
+  
+  <!-- JavaScript modules -->
   <script type="module" src="../global.js"></script>
   <script type="module" src="projects.js"></script>
 

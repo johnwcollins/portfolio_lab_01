@@ -51,19 +51,20 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     // Create the article element
     const article = document.createElement('article');
 
-    // Set its innerHTML
+    // Set its innerHTML with year added
     article.innerHTML = `
       <${headingLevel}>${project.title}</${headingLevel}>
       <img src="${project.image}" alt="${project.title}">
-      <p>${project.description}</p>
+      <div class="project-content">
+        <p>${project.description}</p>
+        <p class="project-year">${project.year}</p>
+      </div>
     `;
 
     // Append to the container
     containerElement.appendChild(article);
   }
 }
-
-
 
 // PART 3
 // 3.1
@@ -109,8 +110,6 @@ for (let p of pages) {
   nav.append(a);
 }
 
-
-
 document.body.insertAdjacentHTML(
   'afterbegin',
   `<label class="color-scheme">
@@ -147,46 +146,7 @@ if ("colorScheme" in localStorage) {
 select.addEventListener('input', function (event) {
   console.log('color scheme changed to', event.target.value);
   setColorScheme(event.target.value);
-});
-
-
-
-
-// Option 1
-// if (!url.startsWith('http')) {
-//   url = BASE_PATH + url;
-// }
-
-// Option 2
-// url = !url.startsWith('http') ? BASE_PATH + url : url;
-
-
-
-
-
-
-// PART 2
-// const navLinks = $$("nav a");
-// console.log(navLinks);
-
-
-// // Find the link the current page
-// let currentLink = navLinks.find(
-//     (a) => a.host === location.host && a.pathname === location.pathname,
-//   );
-
-// console.log(currentLink); // Logs the <a> element that links to the current page, or undefined if none is found
-// console.log('Testing!');
-
-// // Option 1
-// if (currentLink) {
-//     currentLink.classList.add('current');
-//   }
-  
-//   // OR Option 2 (just one of these!)
-//   //currentLink?.classList.add('current');
-
-
+})
 
 if (location.pathname.includes('projects')) {
   fetchJSON('../lib/projects.json').then(data => {

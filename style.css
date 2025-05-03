@@ -1,22 +1,18 @@
 :root {
   --color-accent: rgb(183, 154, 241);
 }
-
 html {
   color-scheme: light dark;
 }
-
-
 body {
   /* Set line height to 1.5 times the font size
-     and use the OS’s UI font as the website font */
+   and use the OS's UI font as the website font */
   font: 100%/1.5 system-ui;
   max-width: 960px;
   margin-inline: max(1em, (100% - 100ch) / 2);
   padding: 0;
   accent-color: var(--color-accent);
 }
-
 /* Style the color scheme switcher */
 .color-scheme {
   position: absolute;
@@ -24,26 +20,20 @@ body {
   right: 1rem;
   font-size: 80%;
 }
-
 /* Style the select element */
 select {
   font-family: inherit;
 }
-
 nav {
   display: flex;
   margin-bottom: 2em;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
-
   /* new lines */
   --border-color: oklch(50% 10% 200 / 40%);
   border-bottom-color: var(--border-color);
-  
-
 }
-
 nav a {
   /* flex: 1; */
   text-decoration: none;
@@ -54,79 +44,62 @@ nav a {
   justify-content: center;
   align-items: center;
 }
-
 nav a:hover {
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
   border-bottom-color: var(--color-accent);
-
   /* old lines, looks bad in dark mode */
   /* background-color: oklch(from var(--color-accent) 95% 5% h) */
-
   /* new lines */
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
-
 nav a.current {
   font-weight: bold;
   color: inherit;
   /* margin-bottom: 1em; */
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
-
   /* old lines */
   /* border-bottom-color: oklch(80% 3% 200); */
-
   /* new line */
   border-bottom-color: var(--border-color);
-
 }
-
 form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1em;
 }
-
 label {
   display: grid;
   grid-template-columns: subgrid;
   grid-column: 1 / -1;
 }
-
 button {
   grid-column: 1 / -1;
 }
-
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1em;
 }
-
 article {
   display: grid;
   grid-template-rows: subgrid;
   grid-row: span 3;
 }
-
 h2 {
   margin: 0;
 }
-
 /* Style for all headings */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
-
 /* Specific style for main heading */
 h1 {
   font-size: 400%;
 }
-
 /* Add this to the end of your current CSS file */
-
 /* CV page specific styles */
 .cv section {
   margin-bottom: 2rem;
@@ -135,19 +108,15 @@ h1 {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 /* Dark mode override */
 @media (prefers-color-scheme: dark) {
   .cv section {
     background-color: rgba(255, 255, 255, 0.05); /* Light card on dark bg */
   }
 }
-
 .cv article {
   margin-bottom: 1.5rem;
 }
-
-
 .cv article header {
   display: flex;
   flex-wrap: wrap;
@@ -156,26 +125,99 @@ h1 {
   align-items: baseline;
   margin-bottom: 0.5rem;
 }
-
 .cv time {
   color: #666;
   font-style: italic;
   font-size: 0.9rem;
 }
-
 .cv ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 0.5rem;
 }
-
 /* Media query for small screens */
 /* @media (max-width: 768px) {
   .cv ul {
-    grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   }
-  
   .cv article header {
-    flex-direction: column;
+  flex-direction: column;
   }
 } */
+
+/* Project year styling */
+.project-year {
+  font-family: Baskerville, serif;
+  font-variant-numeric: oldstyle-nums;
+  color: #777;
+  margin-top: 0.5em;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* SVG chart styling */
+#projects-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+/* Styling for the legend */
+.legend {
+  list-style: none;
+  padding: 1em;
+  margin: 2em 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.swatch {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: var(--color);
+  border-radius: 3px;
+}
+
+/* For dark mode */
+@media (prefers-color-scheme: dark) {
+  .legend {
+    border-color: #555;
+  }
+}
+
+/* SVG path transitions and hover effects */
+#projects-plot path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+#projects-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Selection styling */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color);
+}
+
+.selected:is(.legend-item) {
+  border-left: 4px solid var(--color);
+  padding-left: 0.5em;
+}

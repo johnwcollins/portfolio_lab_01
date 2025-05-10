@@ -221,3 +221,143 @@ h1 {
   border-left: 4px solid var(--color);
   padding-left: 0.5em;
 }
+
+/* Add to your existing style.css */
+.stats {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25em 1em;
+  font-size: 1rem;
+  margin-top: 2em;
+}
+
+.stats dt {
+  font-weight: bold;
+}
+
+.stats dd {
+  margin: 0;
+}
+
+
+/* Gridline styling for scatterplot */
+.gridlines line {
+  stroke: #999;
+  stroke-opacity: 0.2;
+  shape-rendering: crispEdges;
+}
+
+.gridlines path {
+  display: none; /* Hides the Y-axis line */
+}
+
+/* Tooltip layout */
+dl.info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25em 1em;
+  background: #fff;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+dl.info dt {
+  font-weight: bold;
+  color: #555;
+}
+
+dl.info dd {
+  margin: 0;
+}
+
+/* Tooltip positioning */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  max-width: 300px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Dot hover animation */
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+
+
+/* === Tooltip Styling === */
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  padding: 1em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+  max-width: 300px;
+  font-size: 0.9em;
+  z-index: 1000;
+  pointer-events: none; /* Prevents the tooltip from interfering with hover */
+  backdrop-filter: blur(4px); /* Optional: frosted glass look */
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25em 1em;
+}
+
+dl.info dt {
+  font-weight: bold;
+  color: #444;
+}
+
+dl.info dd {
+  margin: 0;
+}
+
+dl.info {
+  /* existing styles... */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tooltip {
+  pointer-events: none;
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}

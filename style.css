@@ -1,3 +1,4 @@
+/*works1*/
 :root {
   --color-accent: rgb(183, 154, 241);
 }
@@ -19,6 +20,7 @@ body {
   top: 1rem;
   right: 1rem;
   font-size: 80%;
+  
 }
 /* Style the select element */
 select {
@@ -361,3 +363,185 @@ circle.selected {
     stroke-dashoffset: -8;
   }
 }
+
+circle {
+  transition: r 0.3s ease;
+
+  @starting-style {
+    r: 0;
+  }
+}
+
+
+.files {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.5em 1em;
+  margin-top: 1em;
+}
+
+.files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.files dt {
+  grid-column: 1;
+  font-weight: bold;
+}
+
+.files dd {
+  grid-column: 2;
+  margin: 0;
+}
+
+
+.files {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.5em 1em;
+  margin-top: 1em;
+}
+
+.files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.files dt {
+  grid-column: 1;
+  font-weight: bold;
+}
+
+.files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+.files code {
+  font-size: 0.95em;
+}
+
+.files small {
+  display: block;
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+.line {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+:global(body) {
+  max-width: min(120ch, 80vw);
+}
+
+#scrollytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+#scroll-container {
+  grid-column: 1;
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#chart {
+  grid-column: 2;
+}
+
+#spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none;
+  pointer-events: none;
+}
+
+#items-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.item {
+  height: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
+
+#scrollytelling {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Left: scroll; Right: chart */
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+#scroll-container {
+  position: relative;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+#chart {
+  width: 100%;
+}
+
+#stats, .files, h2 {
+  margin-top: 2rem;
+}
+
+#scroll-container {
+  width: 100%;
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  background: #fff;
+  padding: 0;
+}
+
+#items-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9em;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.item{
+  /* was: height:30px (inline in JS) */
+  height:auto;           /* let the paragraph expand */
+  white-space:normal;    /* allow wrapping */
+}
+

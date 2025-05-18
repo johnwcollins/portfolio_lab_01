@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+index.html. <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,10 +10,29 @@
 </head>
 <body>
 
+  <div id="filterUI" style="display: flex; align-items: baseline; margin-bottom: 1em;">
+    <label style="flex: 1;">
+      Show commits until:
+      <input type="range" id="commitSlider" min="0" max="100" value="100" />
+    </label>
+    <time id="selectedTime" style="margin-left: auto;"></time>
+  </div>
+
+  <dl class="files"></dl>
+
+  <div id="stats"></div>
+
   <div id="stats"></div>
 
   <h2>Commits by time of day</h2>
+  
+  <div id="scrollytelling">
+  <div id="scroll-container">
+    <div id="spacer"></div>
+    <div id="items-container"></div>
+  </div>
   <div id="chart"></div>
+</div>
 
   <p id="selection-count">No commits selected</p>
   <dl id="language-breakdown" class="stats"></dl>
